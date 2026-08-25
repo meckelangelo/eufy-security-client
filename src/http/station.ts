@@ -2626,6 +2626,13 @@ export class Station extends TypedEmitter<StationEvents> {
         }
       );
     } else if (device.isBatteryDoorbellDualE340() || device.isOutdoorPanAndTiltCamera() || device.isFloodLightT8425() || device.isFloodLightT8426()) {
+      
+      rootHTTPLogger.debug("T8426 PATCHED LIGHT PATH", {
+          deviceSN: device.getSerial(),
+          isT8425: device.isFloodLightT8425(),
+          isT8426: device.isFloodLightT8426(),
+      });
+      
       this.p2pSession.sendCommandWithStringPayload(
         {
           commandType: CommandType.CMD_DOORBELL_SET_PAYLOAD,

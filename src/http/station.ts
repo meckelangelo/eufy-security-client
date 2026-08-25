@@ -2599,7 +2599,7 @@ export class Station extends TypedEmitter<StationEvents> {
       value: value,
     });
     if (
-      (device.isFloodLight() && !device.isFloodLightT8425()) ||
+      (device.isFloodLight() && !device.isFloodLightT8425() && !device.isFloodLightT8426()) ||
       device.isSoloCameraSpotlight1080() ||
       device.isSoloCameraSpotlight2k() ||
       device.isSoloCameraSpotlightSolar() ||
@@ -2625,7 +2625,7 @@ export class Station extends TypedEmitter<StationEvents> {
           property: propertyData,
         }
       );
-    } else if (device.isBatteryDoorbellDualE340() || device.isOutdoorPanAndTiltCamera() || device.isFloodLightT8425()) {
+    } else if (device.isBatteryDoorbellDualE340() || device.isOutdoorPanAndTiltCamera() || device.isFloodLightT8425() || device.isFloodLightT8426()) {
       this.p2pSession.sendCommandWithStringPayload(
         {
           commandType: CommandType.CMD_DOORBELL_SET_PAYLOAD,
@@ -7712,6 +7712,7 @@ export class Station extends TypedEmitter<StationEvents> {
     } else if (
       device.isOutdoorPanAndTiltCamera() ||
       device.isFloodLightT8425() ||
+      device.isFloodLightT8426() ||
       (device.isBatteryDoorbellDualE340() && !this.isStationMiniBaseChime()) ||
       ((device.isIndoorPTCameraE30() || device.isIndoorCameraBase()) && this.isDeviceControlledByHomeBase())
     ) {
